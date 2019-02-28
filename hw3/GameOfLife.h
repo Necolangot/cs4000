@@ -32,17 +32,17 @@ vector<vector<int> > GameOfLife::SimulateLife(vector<vector<int> > &board, int l
 				int alive = 0;
 				if (currentboard[(n+x+1)%n][y] > 0)
 					alive++;
-				if (currentboard[(n+x+1)%n][(n+y+1)%n] > 0)
-					alive++;
-				if (currentboard[x][(n+y+1)%n] > 0)
-					alive++;
 				if (currentboard[(n+x-1)%n][y] > 0)
 					alive++;
 				if (currentboard[(n+x-1)%n][(n+y+1)%n] > 0)
 					alive++;
 				if (currentboard[(n+x-1)%n][(n+y-1)%n] > 0)
 					alive++;
+				if (currentboard[(n+x+1)%n][(n+y+1)%n] > 0)
+					alive++;
 				if (currentboard[(n+x+1)%n][(n+y-1)%n] > 0)
+					alive++;
+				if (currentboard[x][(n+y+1)%n] > 0)
 					alive++;
 				if (currentboard[x][(n+y-1)%n] > 0)
 					alive++;
@@ -56,11 +56,13 @@ vector<vector<int> > GameOfLife::SimulateLife(vector<vector<int> > &board, int l
 						else if (alive <= 1)
 							nextboard[x][y] = 0;
 						else 
-							nextboard[x][y] = 0;
+							nextboard[x][y] = 1;
 						break;
 					case 0:
 						if (alive == 3)
 							nextboard[x][y] = 1;
+						else
+							nextboard[x][y] = 0;
 						break;
 					default:
 						std::cout<<"Error in board!"<<endl;
@@ -75,7 +77,7 @@ vector<vector<int> > GameOfLife::SimulateLife(vector<vector<int> > &board, int l
 	fout.open("output.out");
 	for (int i=0;i<n;i++) {
     for (int j=0;j<n;j++) {
-      fout << board[i][j] << " ";
+      fout << currentboard[i][j] << " ";
     }
     fout << endl;
   }
