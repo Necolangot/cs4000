@@ -18,7 +18,7 @@
 
 using namespace std;
 
-void draw_top_matrix(vector<vector<int> > &board,
+void draw_top_matrix(vector<vector<char> > &board,
 		     int cur_row,
 		     int cur_col) {
 
@@ -61,9 +61,9 @@ main() {
   int cur_col=0;
   int ch;
 
-  vector<vector<int> > board;
+  vector<vector<char> > board;
   for (int i=0;i<4;i++) {
-    vector<int> t;
+    vector<char> t;
     for (int j=0;j<4;j++) {
       t.push_back(1);
     }
